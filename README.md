@@ -14,7 +14,7 @@ Page Pulse is a lightweight, production-ready website audit application built wi
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_GITHUB_USERNAME/page-pulse.git](https://github.com/YOUR_GITHUB_USERNAME/page-pulse.git)
+   git clone [https://github.com/goyal-ishan/PagePulse-Digital_Heroes.git](https://github.com/goyal-ishan/PagePulse-Digital_Heroes.git)
    cd page-pulse
    ```
 
