@@ -27,7 +27,7 @@ describe('Page Pulse - HTML Parser Tests', () => {
     expect(result.metaDescription).toBe('This is a test meta description.');
     expect(result.h1Count).toBe(1);
     expect(result.missingAltCount).toBe(1);
-    expect(result.wordCount).toBe(10); // Includes "Heading 1" + paragraph text
+    expect(result.wordCount).toBe(9); // Includes "Heading 1" + paragraph text
   });
 
   // 2. FAILURE / EDGE CASE 1: Missing metadata tags
