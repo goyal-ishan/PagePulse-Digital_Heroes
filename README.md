@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Page Pulse ⚡
 
-## Getting Started
+Page Pulse is a lightweight, production-ready website audit application built with Next.js (App Router), TypeScript, and Cheerio. It fetches public web pages to analyze performance response times, fundamental SEO markers, and basic accessibility signals.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Setup Instructions
+
+### Prerequisites
+* **Node.js**: `v18.x` or higher
+* **npm**: `v9.x` or higher
+
+### Local Development Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR_GITHUB_USERNAME/page-pulse.git](https://github.com/YOUR_GITHUB_USERNAME/page-pulse.git)
+   cd page-pulse
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the local server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+4. **Run the test suite:**
+   ```bash
+   npm test
+   ```
+
+---
+
+## 📑 API Contract
+
+### `POST /api/audit`
+
+Analyzes a target URL and returns extracted SEO, performance, and accessibility metrics.
+
+#### Request Body
+```json
+{
+  "url": "[https://example.com](https://example.com)"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Successful Response (`200 OK`)
+```json
+{
+  "url": "[https://example.com](https://example.com)",
+  "status": 200,
+  "responseTimeMs": 352,
+  "h1Count": 1,
+  "missingAltCount": 2,
+  "wordCount": 420,
+  "title": "Example Domain",
+  "metaDescription": "Example Domain description text for search engines."
+}
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Error Response (`400 Bad Request` / `422 Unprocessable Content`)
+```json
+{
+  "error": "Access to local or internal network IP addresses is restricted."
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 💡 3 Key Design Decisions & Rationale
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Static Parsing via Cheerio over Headless Browsers
+* **Decision:** Used Cheerio to parse static HTML directly on the server instead of booting up a heavy headless browser like Puppeteer or Playwright.
+* **Reasoning:** Cheerio executes in milliseconds with minimal CPU and memory overhead. This delivers low-latency audit responses and keeps cloud hosting costs minimal while fulfilling all core parsing requirements.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. SSRF (Server-Side Request Forgery) Defensive Validation
+* **Decision:** Performed explicit URL host resolution using DNS lookup before executing outbound HTTP requests.
+* **Reasoning:** Prevents malicious actors from using the server as a proxy to scan private internal networks (e.g., `localhost`, `127.0.0.1`, `10.0.0.0/8`, `192.168.0.0/16`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Strict Timeout Management via AbortController
+* **Decision:** Enforced a hard 5-second timeout on all target page fetches using native `AbortController`.
+* **Reasoning:** Guarantees that hanging, slow, or unresponsive external target servers will not tie up API routes or exhaust server resources.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔗 Live Build & Submission Details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **Live URL:** `https://your-app-name.vercel.app`
+* **GitHub Repository:** `https://github.com/YOUR_GITHUB_USERNAME/page-pulse`
+
+*Built for Digital Heroes Training Task — [digitalheroesco.com](https://digitalheroesco.com)*
