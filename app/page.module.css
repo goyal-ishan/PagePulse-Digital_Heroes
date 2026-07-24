@@ -1,0 +1,327 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+.hero {
+  background: var(--pp-surface);
+  border-bottom: 1px solid var(--pp-border);
+  padding: 3rem 1.5rem 2.25rem;
+}
+
+.heroInner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--pp-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pp-signal);
+  margin: 0 0 0.75rem;
+}
+
+.title {
+  font-family: var(--pp-font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  color: var(--pp-ink-muted);
+  font-size: 1.02rem;
+  max-width: 46ch;
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+/* The signature element: a live "pulse" waveform that animates while a
+   check is running, and settles flat when idle. It's the one literal nod
+   to the product name, kept quiet and monochrome so it doesn't fight the
+   rest of the page. */
+.pulseLine {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: 46px;
+  margin-bottom: 2rem;
+}
+
+.pulsePath {
+  fill: none;
+  stroke: var(--pp-border-strong);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pulsePath.active {
+  stroke: var(--pp-signal);
+  stroke-dasharray: 6 10;
+  animation: travel 1.1s linear infinite;
+}
+
+@keyframes travel {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Form                                                                */
+/* ------------------------------------------------------------------ */
+.form {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.inputWrap {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.input {
+  font-family: var(--pp-font-mono);
+  font-size: 0.95rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--pp-border-strong);
+  border-radius: var(--pp-radius-sm);
+  background: var(--pp-bg);
+  color: var(--pp-ink);
+  width: 100%;
+}
+
+.input:focus {
+  background: var(--pp-surface);
+}
+
+.input.invalid {
+  border-color: var(--pp-bad);
+}
+
+.fieldHint {
+  font-size: 0.78rem;
+  color: var(--pp-bad);
+  min-height: 1em;
+}
+
+.submit {
+  padding: 0.75rem 1.35rem;
+  border: none;
+  border-radius: var(--pp-radius-sm);
+  background: var(--pp-ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.submit:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.spinner {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  vertical-align: -0.12em;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Error banner                                                        */
+/* ------------------------------------------------------------------ */
+.errorBanner {
+  max-width: 880px;
+  margin: 1.25rem auto 0;
+  padding: 0.9rem 1.1rem;
+  background: var(--pp-bad-dim);
+  border: 1px solid #f3c6bd;
+  border-radius: var(--pp-radius-sm);
+  color: #8c2c1e;
+  font-size: 0.92rem;
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.errorIcon {
+  font-family: var(--pp-font-mono);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ */
+/* Results                                                             */
+/* ------------------------------------------------------------------ */
+.results {
+  flex: 1;
+  max-width: 880px;
+  width: 100%;
+  margin: 2.25rem auto 0;
+  padding: 0 1.5rem 3rem;
+}
+
+.resultsMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--pp-font-mono);
+  font-size: 0.85rem;
+  color: var(--pp-ink-muted);
+}
+
+.statusPill {
+  font-family: var(--pp-font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+.statusGood {
+  background: var(--pp-good-dim);
+  color: var(--pp-good);
+}
+
+.statusWarn {
+  background: var(--pp-warn-dim);
+  color: var(--pp-warn);
+}
+
+.statusBad {
+  background: var(--pp-bad-dim);
+  color: var(--pp-bad);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.9rem;
+}
+
+.card {
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  border-radius: var(--pp-radius);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cardLabel {
+  font-family: var(--pp-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pp-ink-muted);
+}
+
+.cardValue {
+  font-family: var(--pp-font-display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.cardValue.small {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: var(--pp-font-body);
+  color: var(--pp-ink);
+}
+
+.cardFlag {
+  font-size: 0.8rem;
+  color: var(--pp-warn);
+  font-weight: 500;
+}
+
+.cardFlagOk {
+  font-size: 0.8rem;
+  color: var(--pp-good);
+  font-weight: 500;
+}
+
+.wideCard {
+  grid-column: 1 / -1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Empty state                                                         */
+/* ------------------------------------------------------------------ */
+.emptyState {
+  border: 1px dashed var(--pp-border-strong);
+  border-radius: var(--pp-radius);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--pp-ink-muted);
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
+.footer {
+  border-top: 1px solid var(--pp-border);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--pp-ink-muted);
+}
+
+.footer a {
+  color: var(--pp-signal);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .form {
+    flex-direction: column;
+  }
+  .submit {
+    width: 100%;
+  }
+}

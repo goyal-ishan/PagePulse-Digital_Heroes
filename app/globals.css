@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+  /* -- Color tokens ---------------------------------------------------- */
+  --pp-bg: #f5f6f8;
+  --pp-surface: #ffffff;
+  --pp-ink: #12151c;
+  --pp-ink-muted: #5b6472;
+  --pp-border: #e2e5ec;
+  --pp-border-strong: #cdd2dd;
+
+  --pp-signal: #2d5de0; /* primary accent: "the pulse" */
+  --pp-signal-dim: #e7ecfc;
+  --pp-good: #1f9d64;
+  --pp-good-dim: #e5f6ee;
+  --pp-warn: #b97a12;
+  --pp-warn-dim: #fbf1de;
+  --pp-bad: #d43d2a;
+  --pp-bad-dim: #fdeae7;
+
+  /* -- Type -------------------------------------------------------------- */
+  --pp-font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --pp-font-body: "Inter", "Segoe UI", sans-serif;
+  --pp-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  --pp-radius: 10px;
+  --pp-radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--pp-bg);
+  color: var(--pp-ink);
+  font-family: var(--pp-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Visible keyboard focus, everywhere */
+:focus-visible {
+  outline: 2px solid var(--pp-signal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
