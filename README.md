@@ -149,6 +149,14 @@ Node's built-in `fetch` will happily follow redirects on its own, but that means
 
 `safeFetch()` instead sets `redirect: "manual"`, inspects each `3xx` response itself, re-validates the new `Location` against the same SSRF and protocol checks, and caps the chain at 5 hops before giving up with a `400`. It's more code than trusting the default behavior, but it means every hop gets the same scrutiny as the original request, and the final response can honestly report `redirected` and `finalUrl` instead of only ever showing the URL the user typed in.
 
+### 🔮 Future Scaling & Roadmap (Version 2)
+
+While **Version 1** relies on Cheerio for rapid, low-overhead static HTML parsing (~200ms round-trip times), expanding Page Pulse for enterprise-grade audits involves transitioning to an asynchronous, worker-based architecture:
+
+* **Dynamic Client-Side Rendering (SPAs):** Replace static parsing with **Puppeteer / Playwright** instances to execute JavaScript, allowing full auditing of hydrated Single Page Applications (React, Vue, Angular) and dynamic DOM states.
+* **Deep Accessibility & Visual Audits:** Integrate **`axe-core`** to evaluate computed visual styles, WCAG color contrast compliance, dynamic ARIA roles, and cumulative layout shifts (CLS) that static parsers cannot detect.
+* **Asynchronous Task Queue:** Offload browser execution tasks to background workers (e.g., via **BullMQ / Redis** or serverless queue triggers) to avoid HTTP gateway timeouts, decouple audit jobs from the API route, and smoothly handle concurrent requests.
+
 ---
 
 ## Project structure
