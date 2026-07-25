@@ -2,7 +2,7 @@
 
 Check a page's vitals in seconds — response time, HTTP status, SEO metadata, and basic accessibility signals for any public URL.
 
-**Live demo:** https://page-pulse-digital-heroes-two.vercel.app/
+**Live demo:** https://page-pulse-digital-heroes-two.vercel.app
 **Repo:** https://github.com/goyal-ishan/PagePulse-Digital_Heroes
 
 Built for the Digital Heroes technical assessment.
